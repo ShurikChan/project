@@ -1,5 +1,6 @@
 from django.urls import include
 from api.views import *
+
 """
 URL configuration for project project.
 
@@ -21,9 +22,9 @@ from django.urls import path
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('api/perevals', PerevalViewSet)
+router.register("api/perevals", PerevalViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path("admin/", admin.site.urls),
+    path("", include(router.urls)),
 ]
