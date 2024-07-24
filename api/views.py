@@ -6,17 +6,17 @@ from .serializers import *
 
 
 class ImageViewSet(viewsets.ModelViewSet):
-    queryset = Pereval.objects.all()
+    queryset = PerevalImages.objects.all()
     serializer_class = ImageSerializer
 
 
 class CoordViewSet(viewsets.ModelViewSet):
-    queryset = Pereval.objects.all()
+    queryset = PerevalCoords.objects.all()
     serializer_class = CoordsSerializer
 
 
 class LevelViewSet(viewsets.ModelViewSet):
-    queryset = Pereval.objects.all()
+    queryset = PerevalLevels.objects.all()
     serializer_class = LevelSerializer
 
 

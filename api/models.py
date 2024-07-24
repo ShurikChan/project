@@ -5,10 +5,10 @@ import datetime
 # Create your models here.
 class PerevalUsers(models.Model):
     email = models.EmailField()
-    phone = models.CharField(max_length=20)
     fam = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     otc = models.CharField(max_length=50)
+    phone = models.CharField(max_length=20)
 
     class Meta:
         db_table = "pereval_users"
@@ -50,23 +50,24 @@ class Pereval(models.Model):
         (rejected, "отклонена"),
     ]
 
-    beautyTitle = models.CharField(max_length=200)
+    beauty_title = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     other_titles = models.CharField(max_length=200)
-    connect = models.CharField(max_length=200, null=True)
     add_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(PerevalUsers, on_delete=models.CASCADE)
-    coord = models.ForeignKey(PerevalCoords, on_delete=models.CASCADE)
+    coords = models.ForeignKey(PerevalCoords, on_delete=models.CASCADE)
     level = models.ForeignKey(PerevalLevels, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, default=new, blank=False, choices=STATUS)
+    connect = models.CharField(max_length=200, null=True, blank=True)
 
     class Meta:
         db_table = "pereval"
 
 
 class PerevalImages(models.Model):
-    pereval = models.ForeignKey(Pereval, on_delete=models.CASCADE, default=None)
-    image = models.ImageField(upload_to="pereval_images/", null=True)
+    pereval = models.ForeignKey(Pereval, on_delete=models.CASCADE, blank=True)
+    data = models.ImageField(upload_to="project\media", null=True, blank=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
 
     class Meta:
         db_table = "pereval_images"
