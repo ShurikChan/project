@@ -29,10 +29,10 @@ class PerevalCoords(models.Model):
 
 
 class PerevalLevels(models.Model):
-    winter = models.CharField(max_length=20, blank=True)
-    summer = models.CharField(max_length=20, blank=True)
-    autumn = models.CharField(max_length=20, blank=True)
-    spring = models.CharField(max_length=20, blank=True)
+    winter = models.CharField(max_length=20, blank=True, null=True)
+    summer = models.CharField(max_length=20, blank=True, null=True)
+    autumn = models.CharField(max_length=20, blank=True, null=True)
+    spring = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         db_table = "pereval_levels"
@@ -58,7 +58,7 @@ class Pereval(models.Model):
     user = models.ForeignKey(PerevalUsers, on_delete=models.CASCADE)
     coord = models.ForeignKey(PerevalCoords, on_delete=models.CASCADE)
     level = models.ForeignKey(PerevalLevels, on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, default=new, blank=False)
+    status = models.CharField(max_length=20, default=new, blank=False, choices=STATUS)
 
     class Meta:
         db_table = "pereval"
