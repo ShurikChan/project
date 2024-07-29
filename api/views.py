@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 from .models import Pereval
 from .serializers import *
-
 # Create your views here.
 
 
@@ -25,6 +24,3 @@ class PerevalViewSet(viewsets.ModelViewSet):
     serializer_class = PerevalSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = PerevalUsers.objects.all()
-    serializer_class = UserSerializer

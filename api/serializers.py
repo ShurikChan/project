@@ -48,4 +48,5 @@ class PerevalSerializer(WritableNestedModelSerializer):
             "coords",
             "level",
             "images",
+            "status",
         ]
