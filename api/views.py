@@ -1,7 +1,7 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from .models import Pereval
 from .serializers import *
-from django.http import HttpResponse
+from rest_framework.response import Response
 # from rest_framework.generics import UpdateAPIView
 # Create your views here.
 
@@ -27,7 +27,9 @@ class PerevalViewSet(viewsets.ModelViewSet):
 
     def partial_update(self, request, *args, **kwargs):
         instance = self.get_object()
-        if 'user' in request.data:
-            del request.data['user'] 
-        return super().partial_update(request, *args, **kwargs) if instance.status =='new' else HttpResponse('Cannot update a completed pereval', status=status.HTTP_403_FORBIDDEN)
-
+        if instance.status =='new':
+            if 'user' in request.data:
+                del request.data['user']
+            super().partial_update(request, *args, **kwargs)
+            return Response({'state': 1, 'message': 'Record updated successfully'})
+        return Response({'state': 0, 'message': 'Cannot update a completed pereval'})
