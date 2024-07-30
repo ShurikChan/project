@@ -54,7 +54,7 @@ class Pereval(models.Model):
     title = models.CharField(max_length=200)
     other_titles = models.CharField(max_length=200)
     add_time = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(PerevalUsers, on_delete=models.CASCADE)
+    user = models.ForeignKey(PerevalUsers, on_delete=models.CASCADE, related_name="user")
     coords = models.ForeignKey(PerevalCoords, on_delete=models.CASCADE)
     level = models.ForeignKey(PerevalLevels, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, default=new, blank=False, choices=STATUS)
@@ -66,7 +66,7 @@ class Pereval(models.Model):
 
 class PerevalImages(models.Model):
     pereval = models.ForeignKey(Pereval, on_delete=models.CASCADE, blank=True)
-    data = models.ImageField(upload_to="project\media", null=True, blank=True)
+    data = models.ImageField(upload_to="project/media", null=True, blank=True)
     title = models.CharField(max_length=200, null=True, blank=True)
 
     class Meta:

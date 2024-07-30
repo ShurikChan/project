@@ -22,7 +22,8 @@ from django.urls import path
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register("api/perevals", PerevalViewSet)
+router.register(r"api/perevals", PerevalViewSet)
+router.register(r"pereval-email", PerevalEmailViewSet, basename="pereval-email")
 
 urlpatterns = [
     path("admin/", admin.site.urls),

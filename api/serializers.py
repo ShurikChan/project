@@ -50,25 +50,3 @@ class PerevalSerializer(WritableNestedModelSerializer):
             "images",
             "status",
         ]
-
-
-# class PatchPerevalSerializer(WritableNestedModelSerializer):
-#     add_time = serializers.DateTimeField(read_only=True, format="%d-%m-%Y %H:%M:%S")
-#     coords = CoordsSerializer()
-#     level = LevelSerializer(allow_null=True)
-#     user = UserSerializer(read_only=True)
-#     images = ImageSerializer(many=True, source="perevalimages_set")
-
-#     class Meta:
-#         model = Pereval
-#         fields = [
-#             "beauty_title",
-#             "title",
-#             "other_titles",
-#             "connect",
-#             "add_time",
-#             "coords",
-#             "level",
-#             "images",
-#             "status",
-#         ]
