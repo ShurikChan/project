@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from .models import Pereval
 from .serializers import *
+from .filters import OnlyNewPerevalFilter
+# from rest_framework.generics import UpdateAPIView
 # Create your views here.
 
 
@@ -19,7 +21,7 @@ class LevelViewSet(viewsets.ModelViewSet):
     serializer_class = LevelSerializer
 
 
-class PerevalViewSet(viewsets.ModelViewSet):
+class PerevalViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Pereval.objects.all()
     serializer_class = PerevalSerializer
 
