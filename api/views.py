@@ -27,6 +27,7 @@ class PerevalViewSet(viewsets.ModelViewSet):
 
     def partial_update(self, request, *args, **kwargs):
         instance = self.get_object()
+        if 'user' in request.data:
+            del request.data['user'] 
         return super().partial_update(request, *args, **kwargs) if instance.status =='new' else HttpResponse('Cannot update a completed pereval', status=status.HTTP_403_FORBIDDEN)
-
 
