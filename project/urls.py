@@ -1,6 +1,6 @@
 from django.urls import include
 from api.views import *
-from django.views.generic import TemplateView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 """
 URL configuration for project project.
@@ -29,12 +29,6 @@ router.register(r"pereval-email", PerevalEmailViewSet, basename="pereval-email")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
-    path(
-        "swagger-ui/",
-        TemplateView.as_view(
-            template_name="swagger-ui.html",
-            extra_context={"schema_url": "openapi-schema"},
-        ),
-        name="swagger-ui",
-    ),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'), 
 ]
