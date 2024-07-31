@@ -1,5 +1,6 @@
 from django.urls import include
 from api.views import *
+from django.views.generic import TemplateView
 
 """
 URL configuration for project project.
@@ -28,4 +29,12 @@ router.register(r"pereval-email", PerevalEmailViewSet, basename="pereval-email")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
+    path(
+        "swagger-ui/",
+        TemplateView.as_view(
+            template_name="swagger-ui.html",
+            extra_context={"schema_url": "openapi-schema"},
+        ),
+        name="swagger-ui",
+    ),
 ]
