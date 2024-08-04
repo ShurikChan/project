@@ -23,12 +23,12 @@ from django.urls import path
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r"api/perevals", PerevalViewSet)
-router.register(r"pereval-email", PerevalEmailViewSet, basename="pereval-email")
+router.register(r"api/perevals", PerevalViewSet, basename="perevals")
+router.register(r"pereval-email", PerevalEmailViewSet, basename="emailes")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'), 
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
 ]
